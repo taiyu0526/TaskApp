@@ -11,7 +11,9 @@ import android.content.Intent
 import io.realm.RealmChangeListener
 import kotlinx.android.synthetic.main.activity_main.*
 import android.support.v7.app.AlertDialog
+import android.widget.EditText
 import io.realm.Sort
+import kotlinx.android.synthetic.main.content_input.*
 import java.util.*
 
 
@@ -26,6 +28,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private lateinit var mTaskAdapter: TaskAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -92,15 +95,22 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
+
+
+
+        search_button.setOnClickListener(){
+
+            val EditText = category_edit_text.text.toString()
+
+            var search = mRealm.where(Task::class.java).equalTo("category", EditText).findAll()
+            mTaskAdapter.taskList = mRealm.copyFromRealm(search)
+            listView1.adapter = mTaskAdapter
+            mTaskAdapter.notifyDataSetChanged()
+            reloadListView()
+        }
+
         reloadListView()
 
-
-
-
-        // アプリ起動時に表示テスト用のタスクを作成する
-        //addTaskForTest()
-
-        reloadListView()
     }
 
     private fun reloadListView() {
@@ -116,6 +126,7 @@ class MainActivity : AppCompatActivity() {
         // 表示を更新するために、アダプターにデータが変更されたことを知らせる
         mTaskAdapter.notifyDataSetChanged()
     }
+
 
     override fun onDestroy() {
         super.onDestroy()
