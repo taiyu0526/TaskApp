@@ -16,20 +16,22 @@ class TaskAdapter(context: Context):BaseAdapter() {
 
     private val mLayoutInflater:LayoutInflater//レイアウトインフレーター型の定数「mLayoutInflater」を定義
 
-    var taskList = mutableListOf<Task>()//
+    var taskList = mutableListOf<Task>()//様々なアイテムを保持するList（ここではTaskクラス）をtaskListと言うプロパティで定義する
 
     init {
         this.mLayoutInflater = LayoutInflater.from(context)
     }
 
     override fun getCount(): Int {
-
+    //ゲットカウントメソッドでmTaskListのサイズを返す（サイズとは？）
         return taskList.size
 
 
     }
 
     override fun getItem(position: Int): Any {
+        //ゲットアイテムメソッドでmTaskListの要素を返す
+
         return  taskList[position]
 
     }
@@ -47,9 +49,15 @@ class TaskAdapter(context: Context):BaseAdapter() {
 
         textView1.text = taskList[position].title
 
+        val categoryView = view.findViewById<TextView>(android.R.id.edit)
+
+
+
+
         val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.JAPANESE)
         val date = taskList[position].date
         textView2.text = simpleDateFormat.format(date)
+
 
         return view
     }

@@ -98,7 +98,7 @@ class MainActivity : AppCompatActivity() {
 
 
         // アプリ起動時に表示テスト用のタスクを作成する
-        addTaskForTest()
+        //addTaskForTest()
 
         reloadListView()
     }
@@ -123,16 +123,17 @@ class MainActivity : AppCompatActivity() {
         mRealm.close()
     }
 
-    private fun addTaskForTest() {
-        val task = Task()
-        task.title = "test"
-        task.content= "プログラムを書いてPUSHする"
-        task.date = Date()
-        task.id = 0
-        mRealm.beginTransaction()
-        mRealm.copyToRealmOrUpdate(task)
-        mRealm.commitTransaction()
-    }
+    //private fun addTaskForTest() {
+        //val task = Task()
+        //task.title = "test"
+        //task.content= "プログラムを書いてPUSHする"
+        //task.category = "カテゴリー"
+        //task.date = Date()
+        //task.id = 0
+        //mRealm.beginTransaction()
+        //mRealm.copyToRealmOrUpdate(task)
+        //mRealm.commitTransaction()
+    //}
 }
 
 

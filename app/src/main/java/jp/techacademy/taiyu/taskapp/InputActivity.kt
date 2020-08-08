@@ -125,11 +125,16 @@ class InputActivity : AppCompatActivity() {
             mTask!!.id = identifier
         }
 
+
+        val category= category_edit_text.text.toString()
         val title = title_edit_text.text.toString()
         val content = content_edit_text.text.toString()
 
+        mTask!!.category = category
         mTask!!.title = title
         mTask!!.content = content
+
+
         val calendar = GregorianCalendar(mYear, mMonth, mDay, mHour, mMinute)
         val date = calendar.time
         mTask!!.date = date
