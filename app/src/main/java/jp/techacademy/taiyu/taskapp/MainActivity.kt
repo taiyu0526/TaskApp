@@ -100,16 +100,30 @@ class MainActivity : AppCompatActivity() {
 
         search_button.setOnClickListener(){
 
-            val EditText = category_edit_text.text.toString()
+                searchListView()
 
-            var search = mRealm.where(Task::class.java).equalTo("category", EditText).findAll()
+            }
+
+
+
+
+        reloadListView()
+
+    }
+
+    //「カテゴリー」に入力された文字で検索する処理
+    private fun searchListView(){
+        val searchText = category_search_text.text.toString()
+
+        if (searchText.length > 0){
+
+        var search = mRealm.where(Task::class.java).equalTo("category", searchText).findAll()
             mTaskAdapter.taskList = mRealm.copyFromRealm(search)
             listView1.adapter = mTaskAdapter
             mTaskAdapter.notifyDataSetChanged()
+        }else{
             reloadListView()
         }
-
-        reloadListView()
 
     }
 
